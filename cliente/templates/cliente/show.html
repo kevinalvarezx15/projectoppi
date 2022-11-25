@@ -1,0 +1,51 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static '/js/listCliente.js' %}"></script>
+{% endblock %}  
+{% block botones %}
+  <div style="position: absolute; z-index: 1; right: 10px; top: 95px;" >
+    <button onclick="openPopup('{% url 'cliente:crearCliente' %}')" class="btn btn-primary">Crear</button>  
+    <button onclick="openEdit('{% url 'cliente:EditarCliente' 0  %}')" class="btn btn-primary">Modificar</button>
+    <button onclick="deleteRegister('{% url 'cliente:EliminarCliente' 0  %}','/cliente/')" class="btn btn-primary">Eliminar</button>
+    <button onclick="openBuscar()" class="btn btn-primary">Buscar</button>
+  </div>
+{% endblock %}
+
+{% block columns %}
+  <tr>
+    <th>Número documento</th>
+    <th>Nombres</th>
+    <th>Apellidos</th>
+    <th>Tipo persona</th>
+    <th>Tipo documento</th>
+    <th>Celular</th>
+    <th>Correo electrónico</th>
+    <th>Departamento</th>
+    <th>Municipio</th>
+    <th>Dirección</th>
+    <th>Nombre contacto</th>
+    <th>Celular contacto</th>  
+  </tr>
+{% endblock %}
+                
+{% block rows %}
+  {% for obj in object_list %}
+    <tr>
+      <td>{{ obj.documento }}</td>
+      <td>{{ obj.nombres }}</td>
+      <td>{{ obj.apellidos }}</td>
+      <td>{{ obj.tipoPersonaId }}</td>
+      <td>{{ obj.tipoDocumentoId }}</td>
+      <td>{{ obj.celular }}</td>
+      <td>{{ obj.correo }}</td>
+      <td>{{ obj.departamentoId }}</td>
+      <td>{{ obj.municipioId }}</td>
+      <td>{{ obj.direccion }}</td>
+      <td>{{ obj.nombreContacto }}</td>
+      <td>{{ obj.celularContacto }}</td>
+
+    </tr>
+  {% endfor %}
+
+{% endblock %}
